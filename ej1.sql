@@ -1,6 +1,7 @@
--- Active: 1655377905197@@127.0.0.1@3306@Ej1_DDL_DML
-create database Ej1_DDL_DML;
-use Ej1_DDL_DML;
+-- Active: 1655338327203@@127.0.0.1@3306
+CREATE DATABASE Ej1_DDL_DML;
+USE Ej1_DDL_DML;
+
 create table Peliculas(
     titulo varchar(20),
    actor varchar(20),
@@ -217,7 +218,162 @@ drop table if EXISTS `Medicamentos`;
 select * from `Medicamentos` where nombre like "Amox%";
 
 select * from `Medicamentos` where nombre like 'Paracetamol%' and precio<2;
-select * from `Medicamentos` where precio like '%10'
+select * from `Medicamentos` where precio like '%10';
 
 select * from `Medicamentos` where nombre not like "%compuesto%";
 delete from `Medicamentos` where laboratorio  like "%y%";
+
+UPDATE Medicamentos SET precio = 5 where nombre like 'Paracetamol%' and precio>2;
+
+--------------------------------------------10--------------------------------
+drop Table if EXISTS Agenda;
+ create table Agenda(
+  apellido varchar(30),
+  nombre varchar(20) not null,
+  domicilio varchar(30),
+  telefono varchar(11),
+  mail varchar(30)
+ );
+
+     insert into Agenda values('Perez','Juan','Sarmiento 345','4334455','juancito@gmail.com');
+     insert into Agenda values('Garcia','Ana','Urquiza 367','4226677','anamariagarcia@hotmail.com');
+     insert into Agenda values('Lopez','Juan','Avellaneda 900',null,'juancitoLopez@gmail.com');
+     insert into Agenda values('Juarez','Mariana','Sucre 123','0525657687','marianaJuarez2@gmail.com');
+     insert into Agenda values('Molinari','Lucia','Peru 1254','4590987','molinarilucia@hotmail.com');
+     insert into Agenda values('Ferreyra','Patricia','Colon 1534','4585858',null);
+     insert into Agenda values('Perez','Susana','San Martin 333',null,null);
+     insert into Agenda values('Perez','Luis','Urquiza 444','0354545256','perezluisalberto@hotmail.com');
+     insert into Agenda values('Lopez','Maria','Salta 314',null,'lopezmariayo@gmail.com');
+
+     select * from Agenda where mail like '%gmail%';
+
+     select * FROM Agenda where apellido not like '%z%' and not'%g%';
+
+     select * FROM Agenda where apellido like '%z%' or '%v%' or '%w%' or '%x%' or '%y%' or '%z%';
+     SELECT * FROM Agenda where apellido like '%ez';
+
+     select apellido, nombre, domicilio from Agenda where apellido like '%i%i%';
+     
+    SELECT * FROM Agenda WHERE LENGTH(telefono) = 7;
+
+    SELECT * FROM Agenda WHERE LENGTH(mail) >= 20;
+
+--------------------------------------------11--------------------------------
+
+drop Table if EXISTS visitantes;
+create table visitantes(
+  nombre varchar(30),
+  edad tinyint unsigned,
+  sexo char(1),
+  domicilio varchar(30),
+  ciudad varchar(20),
+  telefono varchar(11),
+  montocompra decimal (6,2) unsigned
+ );
+
+  insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Susana Molina', 28,'f','Colon 123','Cordoba',null,45.50); 
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Marcela Mercado',36,'f','Avellaneda 345','Cordoba','4545454',0);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Alberto Garcia',35,'m','Gral. Paz 123','Alta Gracia','03547123456',25); 
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Teresa Garcia',33,'f','Gral. Paz 123','Alta Gracia','03547123456',0);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Roberto Perez',45,'m','Urquiza 335','Cordoba','4123456',33.20);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Marina Torres',22,'f','Colon 222','Villa Dolores','03544112233',25);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Julieta Gomez',24,'f','San Martin 333','Alta Gracia','03547121212',53.50);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Roxana Lopez',20,'f','Triunvirato 345','Alta Gracia',null,0);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Liliana Garcia',50,'f','Paso 999','Cordoba','4588778',48);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Juan Torres',43,'m','Sarmiento 876','Cordoba','4988778',15.30);
+
+ SELECT COUNT(*) FROM visitantes;  
+  SELECT COUNT(*) FROM visitantes where telefono is not null;  
+  select * from visitantes where sexo='m';
+  select * from visitantes where edad>25 and sexo='f';
+  select * from visitantes where ciudad not like '%Cordoba';
+  select * from visitantes where not montocompra= 0;
+  select * from visitantes where montocompra= 0;
+
+-------------------------------------------12--------------------------------
+drop Table if EXISTS visitantes;
+ create table visitantes(
+  nombre varchar(30),
+  edad tinyint unsigned,
+  sexo char(1),
+  domicilio varchar(30),
+  ciudad varchar(20),
+  telefono varchar(11),
+  montocompra decimal (6,2) unsigned
+ );
+
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Susana Molina', 28,'f','Colon 123','Cordoba',null,45.50); 
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Marcela Mercado',36,'f','Avellaneda 345','Cordoba','4545454',0);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Alberto Garcia',35,'m','Gral. Paz 123','Alta Gracia','03547123456',25); 
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Teresa Garcia',33,'f','Gral. Paz 123','Alta Gracia','03547123456',0);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Roberto Perez',45,'m','Urquiza 335','Cordoba','4123456',33.20);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Marina Torres',22,'f','Colon 222','Villa Dolores','03544112233',25);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Julieta Gomez',24,'f','San Martin 333','Alta Gracia','03547121212',53.50);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Roxana Lopez',20,'f','Triunvirato 345','Alta Gracia',null,0);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Liliana Garcia',50,'f','Paso 999','Cordoba','4588778',48);
+ insert into visitantes (nombre,edad, sexo,domicilio,ciudad,telefono,montocompra) values ('Juan Torres',43,'m','Sarmiento 876','Cordoba','4988778',15.30);
+
+  SELECT COUNT(*) FROM visitantes;  
+
+  select sum(montocompra) from visitantes where ciudad='Alta Gracia';
+
+  select max(montocompra) from visitantes;
+ select min(edad) from visitantes;
+  select avg(edad) from visitantes;
+ select avg(montocompra) from visitantes;
+
+ -------------------------------------------13--------------------------------
+ drop table if exists clientes;
+  create table clientes (
+  codigo int unsigned auto_increment,
+  nombre varchar(30) not null,
+  domicilio varchar(30),
+  ciudad varchar(20),
+  provincia varchar (20),
+  telefono varchar(11),
+  primary key(codigo)
+ );
+  insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Marcos', 'Colon 111', 'Córdoba','Cordoba','null');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Perez Ana', 'San Martin 222', 'Cruz del Eje','Cordoba','4578585');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Garcia Juan', 'Rivadavia 333', 'Villa Maria','Cordoba','4578445');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Perez Luis', 'Sarmiento 444', 'Rosario','Santa Fe',null);
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Pereyra Lucas', 'San Martin 555', 'Cruz del Eje','Cordoba','4253685');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Gomez Ines', 'San Martin 666', 'Santa Fe','Santa Fe','0345252525');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Torres Fabiola', 'Alem 777', 'Villa del Rosario','Cordoba','4554455');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Carlos', 'Irigoyen 888', 'Cruz del Eje','Cordoba',null);
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Ramos Betina', 'San Martin 999', 'Cordoba','Cordoba','4223366');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Lucas', 'San Martin 1010', 'Posadas','Misiones','0457858745');
+
+ select COUNT(*) from clientes;
+select COUNT(*) from clientes where telefono is not null;
+
+  SELECT ciudad,provincia FROM clientes GROUP BY ciudad,provincia order by provincia;
+
+  -------------------------------------------14--------------------------------
+
+   drop table if exists clientes;
+   create table clientes (
+  codigo int unsigned auto_increment,
+  nombre varchar(30) not null,
+  domicilio varchar(30),
+  ciudad varchar(20),
+  provincia varchar (20),
+  telefono varchar(11),
+  primary key(codigo)
+);
+
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Marcos', 'Colon 111', 'Córdoba','Cordoba','null');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Perez Ana', 'San Martin 222', 'Cruz del Eje','Cordoba','4578585');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Garcia Juan', 'Rivadavia 333', 'Villa Maria','Cordoba','4578445');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Perez Luis', 'Sarmiento 444', 'Rosario','Santa Fe',null);
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Pereyra Lucas', 'San Martin 555', 'Cruz del Eje','Cordoba','4253685');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Gomez Ines', 'San Martin 666', 'Santa Fe','Santa Fe','0345252525');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Torres Fabiola', 'Alem 777', 'Villa del Rosario','Cordoba','4554455');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Carlos', 'Irigoyen 888', 'Cruz del Eje','Cordoba',null);
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Ramos Betina', 'San Martin 999', 'Cordoba','Cordoba','4223366');
+ insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Lucas', 'San Martin 1010', 'Posadas','Misiones','0457858745');
+ select COUNT(*),ciudad,provincia from clientes GROUP BY ciudad,provincia order by provincia;
+ select COUNT(*),ciudad,provincia from clientes GROUP BY ciudad,provincia order by provincia,ciudad;
+SELECT COUNT(*) as cantidad,ciudad,provincia FROM clientes where telefono is not null GROUP BY ciudad,provincia HAVING count(*)>1 ORDER BY provincia;
+
+-------------------------------------------15--------------------------------
