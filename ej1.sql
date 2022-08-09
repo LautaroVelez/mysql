@@ -1,7 +1,6 @@
 -- Active: 1655377905197@@127.0.0.1@3306@Ej1_DDL_DML
 create database Ej1_DDL_DML;
 use Ej1_DDL_DML;
-
 create table Peliculas(
     titulo varchar(20),
    actor varchar(20),
@@ -115,7 +114,6 @@ ADD column añosServicio int;
 update Empleados set añosServicio=  YEAR(CURDATE()) - Year(fechaIngreso);
 
 --------------------------------------------6--------------------------------
-
 drop table if exist Medicamentos;
 create table Medicamentos(
    codigo int unsigned auto_increment,
@@ -132,3 +130,94 @@ create table Medicamentos(
   insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Paracetamol 500','Bago',1.90,200);
   insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Bayaspirina','Bayer',2.10,150); 
   insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Amoxidal jarabe','Bayer',5.10,250);
+
+  select * from Medicamentos ORDER BY precio;
+  select * from Medicamentos ORDER BY cantidad;
+  
+  select nombre,laboratorio,cantidad from `Medicamentos` order by cantidad;
+
+
+--------------------------------------------7--------------------------------
+
+drop table if exists `Medicamentos`;
+
+ create table Medicamentos(
+  codigo int unsigned auto_increment,
+  nombre varchar(20),
+  laboratorio varchar(20),
+  precio decimal(5,2) unsigned,
+  cantidad int unsigned,
+  primary key(codigo)
+ );
+
+   insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Sertal','Roche',5.2,100);
+  insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Buscapina','Roche',4.10,200);
+  insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Amoxidal 500','Bayer',15.60,100);
+  insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Paracetamol 500','Bago',1.90,200);
+  insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Bayaspirina','Bayer',2.10,150); 
+  insert into Medicamentos (nombre, laboratorio,precio,cantidad) values('Amoxidal jarabe','Bayer',5.10,250);
+
+select * from Medicamentos where laboratorio="Roche" and precio<5;
+select * from Medicamentos where laboratorio="Roche" or precio<5;
+select * from Medicamentos where not laboratorio="Bayer";
+select * from Medicamentos where not laboratorio="Bayer" and cantidad= 100;
+select * from Medicamentos where not laboratorio="Bayer" and not cantidad= 100;
+delete from `Medicamentos` where laboratorio="Bayer" and precio>10; 
+
+update `Medicamentos` set cantidad=200 where laboratorio="Bayer" and precio>5;
+
+delete from `Medicamentos` where laboratorio="Bayer" and precio<3; 
+
+--------------------------------------------8--------------------------------
+
+drop table if EXISTS `Medicamentos`;
+
+ create table Medicamentos(
+   codigo int unsigned auto_increment,
+   nombre varchar(20),
+   laboratorio varchar(20),
+   precio decimal(5,2) unsigned,
+   cantidad int unsigned,
+   primary key(codigo)
+  );
+
+  insert into Medicamentos (nombre,laboratorio,precio,cantidad) values('Sertal','Roche',5.2,100);
+  insert into Medicamentos (nombre,laboratorio,precio,cantidad) values('Buscapina','Roche',4.10,200);
+  insert into Medicamentos (nombre,laboratorio,precio,cantidad) values('Amoxidal 500','Bayer',15.60,100);
+  insert into Medicamentos (nombre,laboratorio,precio,cantidad) values('Paracetamol 500','Bago',1.90,200);
+  insert into Medicamentos (nombre,laboratorio,precio,cantidad) values('Bayaspirina','Bayer',2.10,150); 
+  insert into Medicamentos (nombre,laboratorio,precio,cantidad) values('Amoxidal jarabe','Bayer',5.10,250);
+
+  select nombre,precio from `Medicamentos` where precio>5 and precio<15;
+
+  select * from `Medicamentos` where laboratorio='Bayer' or laboratorio='Bago';
+  delete from `Medicamentos`where cantidad>100 and cantidad<200;
+
+--------------------------------------------9--------------------------------
+drop table if EXISTS `Medicamentos`;
+   create table Medicamentos(
+       codigo int unsigned auto_increment,
+       nombre varchar(20) not null,
+       laboratorio varchar(20),
+       precio decimal(6,2) unsigned,
+       cantidad int unsigned,
+       primary key(codigo)
+     );
+
+  insert into Medicamentos (nombre, laboratorio,precio) values('Sertal gotas','Roche',5.2);
+  insert into Medicamentos (nombre, laboratorio,precio) values('Buscapina','Roche',4.10);
+  insert into Medicamentos (nombre, laboratorio,precio) values('Amoxidal 500','Bayer',15.60);
+  insert into Medicamentos (nombre, laboratorio,precio) values('Paracetamol 500','Bago',1.90);
+  insert into Medicamentos (nombre, laboratorio,precio) values('Bayaspirina','Bayer',2.10); 
+  insert into Medicamentos (nombre, laboratorio,precio) values('Amoxidal jarabe','Bayer',5.10); 
+  insert into Medicamentos (nombre, laboratorio,precio) values('Sertal compuesto','Bayer',5.10); 
+  insert into Medicamentos (nombre, laboratorio,precio) values('Paracetamol 1000','Bago',2.90);
+  insert into Medicamentos (nombre, laboratorio,precio) values('Amoxinil','Roche',17.80);
+
+select * from `Medicamentos` where nombre like "Amox%";
+
+select * from `Medicamentos` where nombre like 'Paracetamol%' and precio<2;
+select * from `Medicamentos` where precio like '%10'
+
+select * from `Medicamentos` where nombre not like "%compuesto%";
+delete from `Medicamentos` where laboratorio  like "%y%";
