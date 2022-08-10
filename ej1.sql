@@ -1,3 +1,4 @@
+-- Active: 1655329192922@@127.0.0.1@3306
 -- Active: 1655338327203@@127.0.0.1@3306
 CREATE DATABASE Ej1_DDL_DML;
 USE Ej1_DDL_DML;
@@ -377,3 +378,62 @@ select COUNT(*) from clientes where telefono is not null;
 SELECT COUNT(*) as cantidad,ciudad,provincia FROM clientes where telefono is not null GROUP BY ciudad,provincia HAVING count(*)>1 ORDER BY provincia;
 
 -------------------------------------------15--------------------------------
+drop table if exists cursos;
+
+create table cursos(
+  codigo tinyint unsigned auto_increment,
+  tema varchar(20) not null,
+  horario char(2) not null,
+  clases tinyint unsigned default 10,
+  fechainicio date,
+  costo decimal(5,2) unsigned,
+  primary key(codigo)
+ );
+
+  insert into cursos (tema,horario,clases,fechainicio,costo) values('PHP básico','AM',10,'2006-08-07',200);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('PHP básico','PM',default,'2006-08-14',200);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('PHP básico','AM',default,'2006-08-05',200);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('PHP avanzado','AM',20,'2006-08-01',350);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('JavaScript básico','PM',15,'2006-09-11',150);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('Paginas web','PM',15,'2006-08-08',200);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('Paginas web','AM',15,'2006-08-12',200);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('Paginas web','AM',15,'2006-08-21',200);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('HTML avanzado','AM',20,'2006-09-18',180);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('HTML avanzado','PM',20,'2006-09-25',180);
+ insert into cursos (tema,horario,clases,fechainicio,costo) values('JavaScript avanzado','PM',25,'2006-09-18',150);
+
+ select distinct tema from cursos;
+
+ select distinct tema, horario from cursos where tema like "%PHP%";
+
+ select distinct COUNT(clases), horario from cursos GROUP BY horario ORDER BY horario;
+
+ -------------------------------------------16--------------------------------
+drop TABLE if EXISTS clientes;
+ create table clientes (
+      codigo int unsigned auto_increment,
+      nombre varchar(30) not null,
+      domicilio varchar(30),
+      ciudad varchar(20),
+      provincia varchar (20),
+      telefono varchar(11),
+      primary key(codigo)
+     );
+
+    insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Marcos', 'Colon 111', 'Córdoba','Cordoba','null');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Perez Ana', 'San Martin 222', 'Cruz del Eje','Cordoba','4578585');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Garcia Juan', 'Rivadavia 333', 'Villa Maria','Cordoba','4578445');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Perez Luis', 'Sarmiento 444', 'Rosario','Santa Fe',null);
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Pereyra Lucas', 'San Martin 555', 'Cruz del Eje','Cordoba','4253685');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Gomez Ines', 'San Martin 666', 'Santa Fe','Santa Fe','0345252525');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Torres Fabiola', 'Alem 777', 'Villa del Rosario','Cordoba','4554455');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Carlos', 'Irigoyen 888', 'Cruz del Eje','Cordoba',null);
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Ramos Betina', 'San Martin 999', 'Cordoba','Cordoba','4223366');
+     insert into clientes (nombre,domicilio,ciudad,provincia,telefono) values ('Lopez Lucas', 'San Martin 1010', 'Posadas','Misiones','0457858745');
+
+     select COUNT(telefono) as telefono_no_nulo from clientes where telefono  is not null;
+
+     select COUNT(nombre) as LOS_PEREZ from clientes where nombre like '%Perez%';
+
+    select distinct COUNT(ciudad) as ciud_dist, provincia  from clientes GROUP BY provincia;
+ -------------------------------------------end--------------------------------
